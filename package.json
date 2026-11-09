@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:rls": "node --env-file-if-exists=.env.local --test tests/*.test.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.119.0",
     "next": "16.4.5",
     "react": "19.3.0",
     "react-dom": "19.3.0"
