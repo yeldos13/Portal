@@ -16,3 +16,19 @@ export async function createTicket(formData: FormData) {
   revalidatePath("/tickets");
   redirect("/tickets");
 }
+
+const STATUSES = ["new", "in_progress", "done"];
+
+// Only managers pass the update policy; for anyone else RLS matches zero rows.
+export async function updateStatus(formData: FormData) {
+  const id = Number(formData.get("id"));
+  const status = String(formData.get("status"));
+  if (!Number.isInteger(id) || !STATUSES.includes(status)) redirect("/tickets?error=Invalid%20status");
+
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("tickets").update({ status }).eq("id", id).select("id");
+  if (error || data.length === 0) redirect(`/tickets?error=${encodeURIComponent(error?.message ?? "Not allowed")}`);
+
+  revalidatePath("/tickets");
+  redirect("/tickets");
+}
