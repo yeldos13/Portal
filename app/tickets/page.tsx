@@ -24,14 +24,14 @@ export default async function TicketsPage({ searchParams }: PageProps<"/tickets"
 
   return (
     <main className="mx-auto w-full max-w-3xl px-4 py-8">
-      <header className="flex items-center justify-between gap-4">
+      <header className="flex flex-wrap items-center justify-between gap-4">
         <h1 className="text-2xl font-semibold">{isManager ? "All tickets" : "My tickets"}</h1>
         <form action={signOut} className="flex items-center gap-3 text-sm">
           <span className="text-zinc-600">
             {user?.email}
             {isManager && " (manager)"}
           </span>
-          <button className="rounded border border-zinc-300 px-3 py-1">Sign out</button>
+          <button className="whitespace-nowrap rounded border border-zinc-300 px-3 py-1">Sign out</button>
         </form>
       </header>
 
@@ -57,7 +57,7 @@ export default async function TicketsPage({ searchParams }: PageProps<"/tickets"
       <ul className="mt-8 flex flex-col gap-3">
         {tickets?.map((t) => (
           <li key={t.id} className="rounded border border-zinc-200 p-4">
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex flex-wrap items-start justify-between gap-2">
               <h3 className="font-medium">{t.title}</h3>
               {isManager ? (
                 <form action={updateStatus} className="flex shrink-0 items-center gap-2">
