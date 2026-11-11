@@ -2,6 +2,8 @@
 
 A small client portal built with Next.js and Supabase. Clients submit support tickets and see only their own. Managers see every ticket and change its status.
 
+Live demo: https://client-portal-demo-orpin.vercel.app (the free Supabase backend pauses after a week without traffic).
+
 This is a demo project. All accounts and tickets are fictional.
 
 ![Landing page](docs/screenshots/landing.png)
@@ -68,7 +70,7 @@ npm run test:rls        # run against a freshly seeded database
 2. Apply the schema and demo data:
    ```bash
    npx supabase link --project-ref <your-project-ref>
-   npx supabase db push --include-seed
+   npx supabase db push --remote --include-seed
    ```
 3. Import the repository in Vercel and set two environment variables from Supabase > Project Settings > API: `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
 
